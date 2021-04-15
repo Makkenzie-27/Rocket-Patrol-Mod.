@@ -25,7 +25,7 @@ class Rocket extends  Phaser.GameObjects.Sprite {
             }
        // }
 
-        // fire button
+        // fire button, the Rocket can be moved after fired
 
         if(Phaser.Input.Keyboard.JustDown(keySPACEBAR)) {
             console.log("Working");
