@@ -13,6 +13,7 @@ class Menu extends Phaser.Scene {
     }
     
     create() {
+      //menu text config
       let menuConfig = {
         fontFamily: 'Courier',
         fontSize: '28px',
@@ -34,7 +35,7 @@ class Menu extends Phaser.Scene {
     menuConfig.backgroundColor = '#00FF00';
     menuConfig.color = '#000';
     this.add.text(game.config.width/2, game.config.height/2 + borderUISize +
-    borderPadding, 'Press <- for Novice or -> for Expert', menuConfig).setOrigin(0.5);
+    borderPadding, 'Press <- for Easy or -> for Expert', menuConfig).setOrigin(0.5);
     
     // define keys
     keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -57,7 +58,7 @@ class Menu extends Phaser.Scene {
         spaceshipSpeed: 4,
         gameTimer: 45000    
       }
-       
+      this.sound.play('sfx_select');
       this.scene.start('playScene');    
     }
   }
