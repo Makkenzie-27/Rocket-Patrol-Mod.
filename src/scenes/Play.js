@@ -13,7 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('uiborder', './assets/UI_Border.png');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        this.load.sound('sfx_theme');
+        //this.load.sound('sfx_theme');
        
     }
     
