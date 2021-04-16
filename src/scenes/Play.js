@@ -10,6 +10,7 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/Spaceship.PNG');
         this.load.image('starfield', './assets/GalaxyField.png');
         this.load.image('neonborder', './assets/NeonBorder.PNG');
+        this.load.image('uiborder', './assets/UI_Border.png');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         
@@ -21,10 +22,17 @@ class Play extends Phaser.Scene {
 
     create() {
 
+    this.music = this.sound.add('sfx_menu');
+
+    this.totalTime = 60;
+
     // place tile sprite
     this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
     // SkyBLUE UI background
+    this.uiborder = this.add.tileSprite(0, 0, 640, 72, 'uiborder').setOrigin(0, 0);
+    
+    
     this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x82EEFD).setOrigin(0, 0);
 
 
@@ -73,9 +81,12 @@ class Play extends Phaser.Scene {
     }
 
     this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+    this.timeText = this.add.text(game.config.width - borderPadding, borderUISize + borderPadding*2, this.totalTime, scoreConfig);
+    
 
     // GAME OVER flag
     this.gameOver = false;
+
 
 
     // 60-second play clock
@@ -84,6 +95,7 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
         this.gameOver = true;
+        this.music.play();
       }, null, this);
 
     
@@ -91,14 +103,19 @@ class Play extends Phaser.Scene {
 
     update() {
 
+      //console.log(this.totalTime - this.clock.getElapsedSeconds());
+      this.timeText.text = this.totalTime - this.clock.getElapsedSeconds();
+
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
         this.sound.play('sfx_select');
         this.scene.restart();
+        this.music.stop();
         }
 
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
           this.scene.start("menuScene");
+          this.music.stop();
       }
 
 

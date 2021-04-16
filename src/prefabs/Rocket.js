@@ -7,6 +7,7 @@ class Rocket extends  Phaser.GameObjects.Sprite {
 
         //track Rocket's firing status
         this.isFiring = false;
+        this.fireTest = this.add.text(game.config.width/2, borderUISize, 'Fire!', this.scene.scoreConfig).setOrigin(0, 0);
 
         //pixels per frame
         this.moveSpeed = 2;
@@ -28,6 +29,7 @@ class Rocket extends  Phaser.GameObjects.Sprite {
          // fire button
             if (Phaser.Input.Keyboard.JustDown(keySPACEBAR) && !this.isFiring) {
                 this.isFiring = true;
+                this.fireText.SetVisible(false)
                 this.sfxRocket.play();  // play sfx
             }
         
@@ -39,6 +41,12 @@ class Rocket extends  Phaser.GameObjects.Sprite {
         // reset on miss
             if(this.y <= borderUISize * 3 + borderPadding) {
                 this.reset();
+            }
+
+            if(this.isFiring){
+                this.fireText.setVisible(true);
+            }else{
+                this.fireText.setVisible(false);
             }
         
     }
