@@ -30,12 +30,9 @@ class Play extends Phaser.Scene {
     // place tile sprite
     this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
-    // SkyBLUE UI background
-    this.uiborder = this.add.tileSprite(0, 0, 640, 72, 'uiborder').setOrigin(0, 0); //new UI Border design
+    // Neon Blue UI background
+    this.uiborder = this.add.tileSprite(0, 36, 640, 80, 'uiborder').setOrigin(0.0, 0); //new UI Border design
     
-    
-    //this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x82EEFD).setOrigin(0, 0);
-
 
     //place new Neon Pink border art
     this.neonborder = this.add.tileSprite(0, 0, 640, 480, 'neonborder').setOrigin(0, 0);
@@ -81,10 +78,11 @@ class Play extends Phaser.Scene {
       fixedWidth: 100
     }
 
-    this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
-    this.timeText = this.add.text(game.config.width - borderPadding, borderUISize + borderPadding*2, this.totalTime, scoreConfig);
-    
+    this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig)
 
+    this.timeText = this.add.text(game.config.width - 130, borderUISize + borderPadding*2, this.totalTime, scoreConfig);   //time countdown code
+    
+    
     // GAME OVER flag
     this.gameOver = false;
 

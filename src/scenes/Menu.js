@@ -13,6 +13,10 @@ class Menu extends Phaser.Scene {
     }
     
     create() {
+
+      this.music = this.sound.add('sfx_menu');
+
+
       //menu text config
       let menuConfig = {
         fontFamily: 'Courier',
@@ -28,6 +32,7 @@ class Menu extends Phaser.Scene {
     }
 
     //show menu text
+    this.music.play();
     this.add.text(game.config.width/2, game.config.height/2 - borderUISize - 
     borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
     this.add.text(game.config.width/2, game.config.height/2, 'Use<-->arrows to move & SPACE to fire',
@@ -50,7 +55,8 @@ class Menu extends Phaser.Scene {
         gameTimer: 60000    
       }
       this.sound.play('sfx_select');
-      this.scene.start('playScene');    
+      this.scene.start('playScene'); 
+      this.music.stop();   
     }
     if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
       // hard mode
@@ -59,7 +65,8 @@ class Menu extends Phaser.Scene {
         gameTimer: 45000    
       }
       this.sound.play('sfx_select');
-      this.scene.start('playScene');    
+      this.scene.start('playScene');  
+      this.music.stop();  
     }
   }
 }
