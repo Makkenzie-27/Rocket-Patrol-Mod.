@@ -13,7 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('uiborder', './assets/UI_Border.png');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        
+        this.load.sound('sfx_theme');
        
     }
     
@@ -23,6 +23,7 @@ class Play extends Phaser.Scene {
     create() {
 
     this.music = this.sound.add('sfx_menu');
+    
 
     this.totalTime = 60;
 
@@ -30,10 +31,10 @@ class Play extends Phaser.Scene {
     this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
     // SkyBLUE UI background
-    this.uiborder = this.add.tileSprite(0, 0, 640, 72, 'uiborder').setOrigin(0, 0);
+    this.uiborder = this.add.tileSprite(0, 0, 640, 72, 'uiborder').setOrigin(0, 0); //new UI Border design
     
     
-    this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x82EEFD).setOrigin(0, 0);
+    //this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x82EEFD).setOrigin(0, 0);
 
 
     //place new Neon Pink border art
@@ -114,6 +115,7 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+          this.sound.play('sfx_select');
           this.scene.start("menuScene");
           this.music.stop();
       }
