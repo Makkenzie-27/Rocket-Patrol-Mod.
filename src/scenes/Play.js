@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('neonborder', './assets/NeonBorder.PNG');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-      }
+    }
     
 
 
