@@ -24,6 +24,7 @@ class Play extends Phaser.Scene {
     // SkyBLUE UI background
     this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x82EEFD).setOrigin(0, 0);
 
+
     //place new Neon Pink border art
     this.neonborder = this.add.tileSprite(0, 0, 640, 480, 'neonborder').setOrigin(0, 0);
 
@@ -49,16 +50,55 @@ class Play extends Phaser.Scene {
       frameRate: 30
       });
 
+    //initialize score
+    this.p1Score = 0;
 
-   
+
+    //display score
+    let scoreConfig = {
+      fontFamily: 'Montague',
+      fontSize: '28px',
+      backgroundColor: '#7DF9FF',
+      color: '#010203',
+      align: 'right',
+      padding: {
+        top: 5,
+        bottom: 5,
+      },
+      fixedWidth: 100
     }
+    this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+
+    // GAME OVER flag
+    this.gameOver = false;
+
+
+    // 60-second play clock
+    scoreConfig.fixedWidth = 0;
+    this.clock = this.time.delayedCall(60000, () => {
+        this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
+        this.gameOver = true;
+      }, null, this);
+
+    
+  }
 
     update() {
-        this.starfield.tilePositionX -= 2;
-        this.p1Rocket.update();
-        this.ship01.update();           //update spaceships (x3). I changed the art work to my ships
-        this.ship02.update();
-        this.ship03.update();
+
+        // check key input for restart
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+        this.scene.restart();
+        }
+
+        this.starfield.tilePositionX -=4;
+
+        if (!this.gameOver) {               
+          this.p1Rocket.update();         // update rocket sprite
+          this.ship01.update();           // update spaceships (x3)
+          this.ship02.update();
+          this.ship03.update();
+        } 
 
         // check collisions
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
@@ -73,7 +113,7 @@ class Play extends Phaser.Scene {
           this.p1Rocket.reset();
           this.shipExplode(this.ship01);
         }
-      }
+    }
 
     checkCollision(rocket, ship) {
         // simple AABB checking
@@ -97,7 +137,10 @@ class Play extends Phaser.Scene {
         ship.reset();                         // reset ship position
         ship.alpha = 1;                       // make ship visible again
         boom.destroy();                       // remove explosion sprite
-      });       
+      });
+      // score add and repaint
+      this.p1Score += ship.points;
+      this.scoreLeft.text = this.p1Score;        
     }
 
 }
