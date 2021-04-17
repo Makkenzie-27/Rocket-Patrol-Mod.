@@ -13,7 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('uiborder', './assets/UI_Border.png');
         this.load.image('menuborder', './assets/Menu_Border.PNG');
         //load Explosion spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('explosion', './assets/Explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         
        
     }
@@ -138,7 +138,7 @@ class Play extends Phaser.Scene {
         } 
 
         // check collisions
-        if(this.checkCollision(this.p1Rocket, this.ship03)) {
+        if (this.checkCollision(this.p1Rocket, this.ship03)) {
           this.p1Rocket.reset();
           this.shipExplode(this.ship03);   
         }
