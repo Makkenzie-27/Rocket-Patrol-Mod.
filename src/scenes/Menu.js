@@ -28,7 +28,7 @@ class Menu extends Phaser.Scene {
       this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
       
       //Menu Text Border
-      this.menuborder = this.add.tileSprite(0, 160, 640, 160, 'menuborder').setOrigin(0.0, 0);
+      this.menuborder = this.add.tileSprite(0, 150, 640, 167, 'menuborder').setOrigin(0.0, 0);
 
       //Neon Pink Border
       this.neonborder = this.add.tileSprite(0, 0, 640, 480, 'neonborder').setOrigin(0, 0);
@@ -38,8 +38,8 @@ class Menu extends Phaser.Scene {
       let menuConfig = {
         fontFamily: 'Monaco',
         fontSize: '28px',
-        backgroundColor: '#26F7FD',
-        color: '#48AAAD',
+        backgroundColor: '#A2FBFE',
+        color: '#005E61',
         align: 'right',
         padding: {
           top: 5,
@@ -52,8 +52,8 @@ class Menu extends Phaser.Scene {
     
     this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
     this.add.text(game.config.width/2, game.config.height/2, 'Use<-->arrows to move & SPACE to fire', menuConfig).setOrigin(0.5);
-    menuConfig.backgroundColor = '#48AAAD';
-    menuConfig.color = '#26F7FD';
+    menuConfig.backgroundColor = '#99FBFE';
+    menuConfig.color = '#005658';
     this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press <- for Easy or -> for Expert', menuConfig).setOrigin(0.5);
     
     this.music.play();
