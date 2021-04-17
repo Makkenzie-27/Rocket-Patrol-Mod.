@@ -7,7 +7,25 @@ class Rocket extends  Phaser.GameObjects.Sprite {
 
         //track Rocket's firing status
         this.isFiring = false;
-        this.fireText = this.scene.add.text(game.config.width/2, borderUISize, 'Fire!', this.scene.scoreConfig).setOrigin(0, 0);
+
+
+       
+        let scoreConfig = {
+            fontFamily: 'Monaco',
+            fontSize: '28px',
+            backgroundColor: '#7DF9FF',
+            color: '#010203',
+            align: 'center',
+            padding: {
+              top: 5,
+              bottom: 5,
+            },
+            fixedWidth: 100
+          }
+      
+        this.fireText = this.scene.add.text(game.config.width/2.2, borderUISize + 20, 'Fire!', scoreConfig).setOrigin(0, 0);
+
+        
 
         //pixels per frame
         this.moveSpeed = 2;

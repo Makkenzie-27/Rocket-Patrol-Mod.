@@ -13,7 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('uiborder', './assets/UI_Border.png');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        //this.load.sound('sfx_theme');
+        
        
     }
     
@@ -23,7 +23,7 @@ class Play extends Phaser.Scene {
     create() {
 
     this.music = this.sound.add('sfx_menu');
-    
+    this.song = this.sound.add('sfx_theme');
 
     this.totalTime = 60;
 
@@ -66,11 +66,11 @@ class Play extends Phaser.Scene {
 
     //display score
     let scoreConfig = {
-      fontFamily: 'Montague',
+      fontFamily: 'Monaco',
       fontSize: '28px',
       backgroundColor: '#7DF9FF',
       color: '#010203',
-      align: 'right',
+      align: 'center',
       padding: {
         top: 5,
         bottom: 5,
@@ -86,7 +86,11 @@ class Play extends Phaser.Scene {
     // GAME OVER flag
     this.gameOver = false;
 
-
+    //play theme song
+    if (!this.gameOver) {
+     this.music.stop(); //menu song
+     this.song.play();  //theme song
+    } 
 
     // 60-second play clock
     scoreConfig.fixedWidth = 0;
@@ -95,6 +99,7 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
         this.gameOver = true;
         this.music.play();
+        this.song.stop();
       }, null, this);
 
     
@@ -102,15 +107,18 @@ class Play extends Phaser.Scene {
 
     update() {
 
+
       //console.log(this.totalTime - this.clock.getElapsedSeconds());
       this.timeText.text = this.totalTime - this.clock.getElapsedSeconds();
 
+
         // check key input for restart
+        
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
         this.sound.play('sfx_select');
         this.scene.restart();
         this.music.stop();
-        }
+        } 
 
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
           this.sound.play('sfx_select');
