@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/GalaxyField.png');
         this.load.image('neonborder', './assets/NeonBorder.PNG');
         this.load.image('uiborder', './assets/UI_Border.png');
-        this.load.image('menuborder', './assets/Menu_Border.png');
+        this.load.image('menuborder', './assets/Menu_Border.PNG');
         //load Explosion spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         

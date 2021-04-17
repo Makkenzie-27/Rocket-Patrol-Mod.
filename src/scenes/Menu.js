@@ -12,7 +12,7 @@ class Menu extends Phaser.Scene {
       this.load.audio('sfx_theme', './assets/theme.wav');
 
       //load images for main menu
-      this.load.image('menuborder', './assets/Menu_Border.png');
+      this.load.image('menuborder', './assets/Menu_Border.PNG');
       this.load.image('neonborder', './assets/NeonBorder.PNG');
       this.load.image('starfield', './assets/GalaxyField.png');   
       
