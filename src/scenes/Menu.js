@@ -9,11 +9,11 @@ class Menu extends Phaser.Scene {
       this.load.audio('sfx_explosion', './assets/explosion.wav');
       this.load.audio('sfx_rocket', './assets/gun_shot.wav');
       this.load.audio('sfx_menu', './assets/menu_music.wav');
-      this.load.audio('sfx_theme', './assets/theme.mp3');
+      this.load.audio('sfx_theme', './assets/theme.wav');
 
       //load images for main menu
+      this.load.image('menuborder', './assets/Menu_Border.png');
       this.load.image('neonborder', './assets/NeonBorder.PNG');
-      this.load.image('uiborder', './assets/UI_Border.png');
       this.load.image('starfield', './assets/GalaxyField.png');   
       
       
@@ -25,7 +25,10 @@ class Menu extends Phaser.Scene {
       this.music = this.sound.add('sfx_menu');
 
       //Galaxy BackDrop
-      this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);  
+      this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+      
+      //Menu Text Border
+      this.menuborder = this.add.tileSprite(0, 160, 640, 160, 'menuborder').setOrigin(0.0, 0);
 
       //Neon Pink Border
       this.neonborder = this.add.tileSprite(0, 0, 640, 480, 'neonborder').setOrigin(0, 0);
@@ -35,9 +38,8 @@ class Menu extends Phaser.Scene {
       let menuConfig = {
         fontFamily: 'Monaco',
         fontSize: '28px',
-        backgroundImage: this.uiborder = this.add.tileSprite(0, 178, 640, 130, 'uiborder').setOrigin(0.0, 0),
-        //backgroundColor: '#26F7FD',
-        color: '#26F7FD',
+        backgroundColor: '#26F7FD',
+        color: '#48AAAD',
         align: 'right',
         padding: {
           top: 5,
@@ -50,7 +52,7 @@ class Menu extends Phaser.Scene {
     
     this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
     this.add.text(game.config.width/2, game.config.height/2, 'Use<-->arrows to move & SPACE to fire', menuConfig).setOrigin(0.5);
-   // menuConfig.backgroundColor = '#48AAAD';
+    menuConfig.backgroundColor = '#48AAAD';
     menuConfig.color = '#26F7FD';
     this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press <- for Easy or -> for Expert', menuConfig).setOrigin(0.5);
     
