@@ -1,3 +1,8 @@
+// Name: Makkenzie Zepeda
+//Project Title: Rocket Patrol Modifications
+//Date: April 17, 2021
+//Amount of time put into Rocket: 96 hours (4 days)
+
 class Play extends Phaser.Scene {
     constructor() {
       super("playScene");

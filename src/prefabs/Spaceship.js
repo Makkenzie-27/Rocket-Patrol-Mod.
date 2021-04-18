@@ -1,3 +1,8 @@
+// Name: Makkenzie Zepeda
+//Project Title: Rocket Patrol Modifications
+//Date: April 17, 2021
+//Amount of time put into Rocket: 24 hours (1 day)
+
 class Spaceship extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame, pointValue) {
         super(scene, x, y, texture, frame);
